@@ -1,9 +1,18 @@
 const Router = require('koa-router');
-const router = new Router();
+const pageRouter = new Router();
 
-router
-  .get('/', (ctx, next) => {
-    ctx.render('index')
-  });
+pageRouter.get('/', async (ctx, next) => {
+  await ctx.render('index', {
+    title: 'Home page',
+    text: 'page one!'
+  })
+});
 
-module.exports = router;
+pageRouter.get('/todo', async(ctx, next) => {
+  await ctx.render('todo', {
+    title: 'todo work',
+    text: 'todo work page!'
+  })
+})
+
+module.exports = pageRouter;
